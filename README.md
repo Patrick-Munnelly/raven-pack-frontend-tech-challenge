@@ -27,14 +27,6 @@ Raven Pack: Frontend - Technical Challenge
 
 
 
-
-	![Main page using chrome broswer](image.jpg)
-
-	![Blog page using chrome broswer](image.jpg)
-
-	![Main page using an iPhoneXR](image.jpg)
-
-
 	
 <a id="Technologies"></a>
 # Technologies used
