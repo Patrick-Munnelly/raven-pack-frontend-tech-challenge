@@ -1,5 +1,5 @@
 import { CommentType } from "../Utils/Types";
-import Comments from "./Comments";
+import Comments from "./Comments"
 
 type Props = {
     comments:CommentType[]

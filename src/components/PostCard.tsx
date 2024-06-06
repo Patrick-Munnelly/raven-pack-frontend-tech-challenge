@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { postType } from "../Utils/Types";
-import { useEffect } from "react";
+import { INTRO_BODY_CARD_LIMIT } from "../Utils/Constants";
 
-const PostCard = ({ userId, id, title, body }: postType) => {
+const PostCard = ({  id, title, body }: postType) => {
   const navigate = useNavigate();
-const INTRO_BODY_CARD_LIMIT = 20
 
-  useEffect(() => {
-   console.log(userId,body)
-  }, [])
+
   
   const onCardClicked = () => {
     navigate(`/post/${id}`);
@@ -19,9 +16,11 @@ const INTRO_BODY_CARD_LIMIT = 20
       onClick={() => {
         onCardClicked();
       }}
-      className="rounded-md p-8 shadow-lg p-12 text-2xl bg-white m-2"
+      className="hover:cursor-pointer  rounded-md p-8 shadow-lg p-12 text-2xl bg-white m-2 flex flex-col justify-between items-start"
     >
-      <div className="font-semibold ">{title}</div>
+            <div className="self-end"><img src="src/assets/RavenPack_Logo.jpeg" alt="Img for doc"/></div>
+
+      <div className="font-semibold mb-2">{title}</div>
       <div>{body.length>INTRO_BODY_CARD_LIMIT?`${body.substring(0,INTRO_BODY_CARD_LIMIT)}...`:body}</div>
     </div>
   );

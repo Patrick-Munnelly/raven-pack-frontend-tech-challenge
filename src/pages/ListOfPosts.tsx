@@ -1,11 +1,12 @@
 import PostCard from "../components/PostCard";
 
 import { postType } from "../Utils/Types";
-import {  postsHarcoded } from "../Utils/Constants";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import PosterFilter from "../components/PosterFilter";
 import { getPosts } from "../api/posts";
+import Loading from "../components/Loading";
+import ErrorPage from "./ErrorPage";
 
 const ListOfPosts = () => {
 
@@ -21,33 +22,33 @@ const ListOfPosts = () => {
 
   useEffect(() => {
    const  PostersFound: string[]=[];
-   postsQuery.data?.map((post)=>{
+   postsQuery.data?.map((post:postType)=>{
       PostersFound.includes(`${post.userId}`)?null:PostersFound.push(`${post.userId}`);
     })
 
     setPosters(PostersFound);
-  }, [postsQuery]);
+  }, [postsQuery.data]);
 
 
 useEffect(() => {
   selectedPosters.length===0?
   setPostsShown(postsQuery.data?postsQuery.data:[])
   :
-  setPostsShown(postsQuery.data? postsQuery.data.filter((post)=>{
+  setPostsShown(postsQuery.data? postsQuery.data.filter((post:postType)=>{
     return selectedPosters.includes(`${post.userId}`)
-  }):[])
+  }):[selectedPosters])
 
-}, [selectedPosters,postsQuery])
+}, [selectedPosters,postsQuery.data])
 
 
   if (postsQuery.isLoading) {
-    return <div>Loading</div>;
+    return <div><Loading/></div>;
   }
   if (postsQuery.isError) {
-    return <div>Error</div>;
+    return <div><ErrorPage/></div>;
   }
   return (
-    <div className=" mx-5 h-full bg-grey-500">
+    <div className="mt-4 mx-5 h-full ">
       <div className="mt-5 mr-5 ml-2">
         <PosterFilter
           filterName={'Posters Filter'}
@@ -56,11 +57,12 @@ useEffect(() => {
           setPosters={setSelectedPosters}
         />
       </div>
-      <div className="grid md:grid-cols-2 sm:grid-cols-1">
+      <div className="grid md:grid-cols-3 sm:grid-cols-1">
         {postsQuery.data &&
-         postsShown.map((item: postType) => {
+         postsShown.map((item: postType,index:number) => {
             return (
               <PostCard
+              key={`blog-${index}`}
                 title={item.title}
                 id={item.id}
                 userId={item.userId}

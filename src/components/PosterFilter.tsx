@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { RESET_VALUE } from "../Utils/Constants";
 type Props = {
   filterName: string;
   posters: string[];
@@ -24,7 +25,6 @@ const MenuProps = {
   },
 };
 
-const RESET_VALUE = "Reset";
 
 const PosterFilter = ({
   filterName,
@@ -32,7 +32,6 @@ const PosterFilter = ({
   setPosters,
   selectedPosters,
 }: Props) => {
-  //   const [personName, setPersonName] = React.useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof posters>) => {
     const {
