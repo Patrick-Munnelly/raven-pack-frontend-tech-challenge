@@ -6,14 +6,9 @@ import  ErrorPage  from './pages/ErrorPage.tsx'
 import ListOfPosts from './pages/ListOfPosts.tsx'
 import Post from './pages/Post.tsx'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 
-// const router = createBrowserRouter([
-//   // path:'/',
-//   // element: <Layout />,
-//   // errorElement: <ErrorPage/>,
-// ])
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 1000 * 60 * 5 } },
 })
@@ -36,11 +31,9 @@ const queryClient = new QueryClient({
     ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
+
   <QueryClientProvider client={queryClient}>
   <RouterProvider router={router}/>
-  <ReactQueryDevtools />
+  {/* <ReactQueryDevtools /> */}
 </QueryClientProvider>
 )
