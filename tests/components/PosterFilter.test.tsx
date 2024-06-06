@@ -6,6 +6,6 @@ import PosterFilter from "../../src/components/PosterFilter";
 
 describe("PosterFilter components", () => {
   it("renders the PosterFilter components", () => {
-    render(<PosterFilter posters={[]} selectedPosters={[]} setPosters={()=>{}}  />);
+    render(<PosterFilter posters={[]} selectedPosters={[]} setPosters={() => { } } filterName={""}  />);
   });
 });
